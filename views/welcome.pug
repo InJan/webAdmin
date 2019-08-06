@@ -1,0 +1,152 @@
+extends layout
+
+block content
+  body.index
+    .layui-fluid
+      .layui-row.layui-col-space15
+        .layui-col-md12
+          .layui-card
+            .layui-card-body
+              blockquote.layui-elem-quote
+                | 欢迎管理员：
+                span.x-red test
+                | ！当前时间:2018-04-25 20:50:53
+        .layui-col-md12
+          .layui-card
+            .layui-card-header 数据统计
+            .layui-card-body
+              ul.layui-row.layui-col-space10.layui-this.x-admin-carousel.x-admin-backlog
+                li.layui-col-md2.layui-col-xs6
+                  a.x-admin-backlog-body(href='javascript:;')
+                    h3 文章数
+                    p
+                      cite 66
+                li.layui-col-md2.layui-col-xs6
+                  a.x-admin-backlog-body(href='javascript:;')
+                    h3 会员数
+                    p
+                      cite 12
+                li.layui-col-md2.layui-col-xs6
+                  a.x-admin-backlog-body(href='javascript:;')
+                    h3 回复数
+                    p
+                      cite 99
+                li.layui-col-md2.layui-col-xs6
+                  a.x-admin-backlog-body(href='javascript:;')
+                    h3 商品数
+                    p
+                      cite 67
+                li.layui-col-md2.layui-col-xs6
+                  a.x-admin-backlog-body(href='javascript:;')
+                    h3 文章数
+                    p
+                      cite 67
+                li.layui-col-md2.layui-col-xs6
+                  a.x-admin-backlog-body(href='javascript:;')
+                    h3 文章数
+                    p
+                      cite 6766
+        .layui-col-sm6.layui-col-md3
+          .layui-card
+            .layui-card-header
+              | 下载
+              span.layui-badge.layui-bg-cyan.layuiadmin-badge 月
+            .layui-card-body
+              p.layuiadmin-big-font 33,555
+              p
+                | 新下载
+                span.layuiadmin-span-color
+                  | 10%
+                  i.layui-inline.layui-icon.layui-icon-face-smile-b
+        .layui-col-sm6.layui-col-md3
+          .layui-card
+            .layui-card-header
+              | 下载
+              span.layui-badge.layui-bg-cyan.layuiadmin-badge 月
+            .layui-card-body
+              p.layuiadmin-big-font 33,555
+              p
+                | 新下载
+                span.layuiadmin-span-color
+                  | 10%
+                  i.layui-inline.layui-icon.layui-icon-face-smile-b
+        .layui-col-sm6.layui-col-md3
+          .layui-card
+            .layui-card-header
+              | 下载
+              span.layui-badge.layui-bg-cyan.layuiadmin-badge 月
+            .layui-card-body
+              p.layuiadmin-big-font 33,555
+              p
+                | 新下载
+                span.layuiadmin-span-color
+                  | 10%
+                  i.layui-inline.layui-icon.layui-icon-face-smile-b
+        .layui-col-sm6.layui-col-md3
+          .layui-card
+            .layui-card-header
+              | 下载
+              span.layui-badge.layui-bg-cyan.layuiadmin-badge 月
+            .layui-card-body
+              p.layuiadmin-big-font 33,555
+              p
+                | 新下载
+                span.layuiadmin-span-color
+                  | 10%
+                  i.layui-inline.layui-icon.layui-icon-face-smile-b
+        .layui-col-md12
+          .layui-card
+            .layui-card-header 系统信息
+            .layui-card-body
+              table.layui-table
+                tbody
+                  tr
+                    th xxx版本
+                    td 1.0.180420
+                  tr
+                    th 服务器地址
+                    td x.xuebingsi.com
+                  tr
+                    th 操作系统
+                    td WINNT
+                  tr
+                    th 运行环境
+                    td Apache/2.4.23 (Win32) OpenSSL/1.0.2j mod_fcgid/2.3.9
+                  tr
+                    th PHP版本
+                    td 5.6.27
+                  tr
+                    th PHP运行方式
+                    td cgi-fcgi
+                  tr
+                    th MYSQL版本
+                    td 5.5.53
+                  tr
+                    th ThinkPHP
+                    td 5.0.18
+                  tr
+                    th 上传附件限制
+                    td 2M
+                  tr
+                    th 执行时间限制
+                    td 30s
+                  tr
+                    th 剩余空间
+                    td 86015.2M
+        .layui-col-md12
+          .layui-card
+            .layui-card-header 开发团队
+            .layui-card-body
+              table.layui-table
+                tbody
+                  tr
+                    th 版权所有
+                    td
+                      | xuebingsi(xuebingsi)
+                      a(href='http://x.xuebingsi.com/', target='_blank') 访问官网
+                  tr
+                    th 开发者
+                    td 马志斌(113664000@qq.com)
+        style#welcome_style.
+        .layui-col-md12
+          blockquote.layui-elem-quote.layui-quote-nm 感谢layui,百度Echarts,jquery,本系统由x-admin提供技术支持。

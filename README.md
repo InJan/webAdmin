@@ -1,2 +1,13 @@
 # webAdmin
-koa2-mysql
+
+UI: 
+
+    X-admin
+
+Framework: 
+
+    koa2
+
+Database:
+
+    mongoDB
