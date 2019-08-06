@@ -60,6 +60,10 @@ router.get('/order-list1', async (ctx, next) => {
   await ctx.render('order-list1', {
   })
 })
+router.get('/order-add', async (ctx, next) => {
+  await ctx.render('order-add', {
+  })
+})
 router.get('/cate', async (ctx, next) => {
   await ctx.render('cate', {
   })
@@ -76,6 +80,14 @@ router.get('/admin-list', async (ctx, next) => {
 })
 router.get('/admin-role', async (ctx, next) => {
   await ctx.render('admin-role', {
+  })
+})
+router.get('/admin-add', async (ctx, next) => {
+  await ctx.render('admin-add', {
+  })
+})
+router.get('/admin-edit', async (ctx, next) => {
+  await ctx.render('admin-edit', {
   })
 })
 router.get('/role-add', async (ctx, next) => {

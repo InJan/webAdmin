@@ -1,3 +1,923 @@
 extends layout
 
 block content
+    style(type='text/css').
+      *{margin: 0;padding: 0;list-style: none;}
+      /*
+      KISSY CSS Reset
+      理念：1. reset 的目的不是清除浏览器的默认样式，这仅是部分工作。清除和重置是紧密不可分的。
+      2. reset 的目的不是让默认样式在所有浏览器下一致，而是减少默认样式有可能带来的问题。
+      3. reset 期望提供一套普适通用的基础样式。但没有银弹，推荐根据具体需求，裁剪和修改后再使用。
+      特色：1. 适应中文；2. 基于最新主流浏览器。
+      维护：玉伯<lifesinger@gmail.com>, 正淳<ragecarrier@gmail.com>
+      */
+      /** 清除内外边距 **/
+      body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+      dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+      pre, /* text formatting elements 文本格式元素 */
+      form, fieldset, legend, button, input, textarea, /* form elements 表单元素 */
+      th, td /* table elements 表格元素 */ {
+      margin: 0;
+      padding: 0;
+      }
+      /** 设置默认字体 **/
+      body,
+      button, input, select, textarea /* for ie */ {
+      font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+      address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+      code, kbd, pre, samp { font-family: courier new, courier, monospace; } /* 统一等宽字体 */
+      small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+      /** 重置列表元素 **/
+      ul, ol { list-style: none; }
+      /** 重置文本格式元素 **/
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      /** 重置表单元素 **/
+      legend { color: #000; } /* for ie6 */
+      fieldset, img { border: 0; } /* img 搭车：让链接里的 img 无边框 */
+      button, input, select, textarea { font-size: 100%; } /* 使得表单元素在 ie 下能继承字体大小 */
+      /* 注：optgroup 无法扶正 */
+      /** 重置表格元素 **/
+      table { border-collapse: collapse; border-spacing: 0; }
+      /* 清除浮动 */
+      .ks-clear:after, .clear:after {
+      content: '\20';
+      display: block;
+      height: 0;
+      clear: both;
+      }
+      .ks-clear, .clear {
+      *zoom: 1;
+      }
+      .main {
+      padding: 30px 100px;
+      width: 960px;
+      margin: 0 auto;
+      }
+      .main h1{font-size:36px; color:#333; text-align:left;margin-bottom:30px; border-bottom: 1px solid #eee;}
+      .helps{margin-top:40px;}
+      .helps pre{
+      padding:20px;
+      margin:10px 0;
+      border:solid 1px #e7e1cd;
+      background-color: #fffdef;
+      overflow: auto;
+      }
+      .icon_lists{
+      width: 100% !important;
+      }
+      .icon_lists li{
+      float:left;
+      width: 100px;
+      height:180px;
+      text-align: center;
+      list-style: none !important;
+      }
+      .icon_lists .icon{
+      font-size: 42px;
+      line-height: 100px;
+      margin: 10px 0;
+      color:#333;
+      -webkit-transition: font-size 0.25s ease-out 0s;
+      -moz-transition: font-size 0.25s ease-out 0s;
+      transition: font-size 0.25s ease-out 0s;
+      }
+      .icon_lists .icon:hover{
+      font-size: 100px;
+      }
+      .markdown {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.8;
+      }
+      .highlight {
+      line-height: 1.5;
+      }
+      .markdown img {
+      vertical-align: middle;
+      max-width: 100%;
+      }
+      .markdown h1 {
+      color: #404040;
+      font-weight: 500;
+      line-height: 40px;
+      margin-bottom: 24px;
+      }
+      .markdown h2,
+      .markdown h3,
+      .markdown h4,
+      .markdown h5,
+      .markdown h6 {
+      color: #404040;
+      margin: 1.6em 0 0.6em 0;
+      font-weight: 500;
+      clear: both;
+      }
+      .markdown h1 {
+      font-size: 28px;
+      }
+      .markdown h2 {
+      font-size: 22px;
+      }
+      .markdown h3 {
+      font-size: 16px;
+      }
+      .markdown h4 {
+      font-size: 14px;
+      }
+      .markdown h5 {
+      font-size: 12px;
+      }
+      .markdown h6 {
+      font-size: 12px;
+      }
+      .markdown hr {
+      height: 1px;
+      border: 0;
+      background: #e9e9e9;
+      margin: 16px 0;
+      clear: both;
+      }
+      .markdown p,
+      .markdown pre {
+      margin: 1em 0;
+      }
+      .markdown > p,
+      .markdown > blockquote,
+      .markdown > .highlight,
+      .markdown > ol,
+      .markdown > ul {
+      width: 80%;
+      }
+      .markdown ul > li {
+      list-style: circle;
+      }
+      .markdown > ul li,
+      .markdown blockquote ul > li {
+      margin-left: 20px;
+      padding-left: 4px;
+      }
+      .markdown > ul li p,
+      .markdown > ol li p {
+      margin: 0.6em 0;
+      }
+      .markdown ol > li {
+      list-style: decimal;
+      }
+      .markdown > ol li,
+      .markdown blockquote ol > li {
+      margin-left: 20px;
+      padding-left: 4px;
+      }
+      .markdown code {
+      margin: 0 3px;
+      padding: 0 5px;
+      background: #eee;
+      border-radius: 3px;
+      }
+      .markdown pre {
+      border-radius: 6px;
+      background: #f7f7f7;
+      padding: 20px;
+      }
+      .markdown pre code {
+      border: none;
+      background: #f7f7f7;
+      margin: 0;
+      }
+      .markdown strong,
+      .markdown b {
+      font-weight: 600;
+      }
+      .markdown > table {
+      border-collapse: collapse;
+      border-spacing: 0px;
+      empty-cells: show;
+      border: 1px solid #e9e9e9;
+      width: 95%;
+      margin-bottom: 24px;
+      }
+      .markdown > table th {
+      white-space: nowrap;
+      color: #333;
+      font-weight: 600;
+      }
+      .markdown > table th,
+      .markdown > table td {
+      border: 1px solid #e9e9e9;
+      padding: 8px 16px;
+      text-align: left;
+      }
+      .markdown > table th {
+      background: #F7F7F7;
+      }
+      .markdown blockquote {
+      font-size: 90%;
+      color: #999;
+      border-left: 4px solid #e9e9e9;
+      padding-left: 0.8em;
+      margin: 1em 0;
+      font-style: italic;
+      }
+      .markdown blockquote p {
+      margin: 0;
+      }
+      .markdown .anchor {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      margin-left: 8px;
+      }
+      .markdown .waiting {
+      color: #ccc;
+      }
+      .markdown h1:hover .anchor,
+      .markdown h2:hover .anchor,
+      .markdown h3:hover .anchor,
+      .markdown h4:hover .anchor,
+      .markdown h5:hover .anchor,
+      .markdown h6:hover .anchor {
+      opacity: 1;
+      display: inline-block;
+      }
+      .markdown > br,
+      .markdown > p > br {
+      clear: both;
+      }
+      .hljs {
+      display: block;
+      background: white;
+      padding: 0.5em;
+      color: #333333;
+      overflow-x: auto;
+      }
+      .hljs-comment,
+      .hljs-meta {
+      color: #969896;
+      }
+      .hljs-string,
+      .hljs-variable,
+      .hljs-template-variable,
+      .hljs-strong,
+      .hljs-emphasis,
+      .hljs-quote {
+      color: #df5000;
+      }
+      .hljs-keyword,
+      .hljs-selector-tag,
+      .hljs-type {
+      color: #a71d5d;
+      }
+      .hljs-literal,
+      .hljs-symbol,
+      .hljs-bullet,
+      .hljs-attribute {
+      color: #0086b3;
+      }
+      .hljs-section,
+      .hljs-name {
+      color: #63a35c;
+      }
+      .hljs-tag {
+      color: #333333;
+      }
+      .hljs-title,
+      .hljs-attr,
+      .hljs-selector-id,
+      .hljs-selector-class,
+      .hljs-selector-attr,
+      .hljs-selector-pseudo {
+      color: #795da3;
+      }
+      .hljs-addition {
+      color: #55a532;
+      background-color: #eaffea;
+      }
+      .hljs-deletion {
+      color: #bd2c00;
+      background-color: #ffecec;
+      }
+      .hljs-link {
+      text-decoration: underline;
+      }
+      pre{
+      background: #fff;
+      }
+      .iconfont {
+      font-family:"iconfont" !important;
+      font-size:16px;
+      font-style:normal;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-stroke-width: 0.2px;
+      -moz-osx-font-smoothing: grayscale;
+      }
+  body
+    .main.markdown
+      h1 IconFont 图标
+      ul.icon_lists.clear
+        li
+          i.icon.iconfont 
+          .name all
+          .code &#xe696;
+        li
+          i.icon.iconfont 
+          .name back
+          .code &#xe697;
+        li
+          i.icon.iconfont 
+          .name cart
+          .code &#xe698;
+        li
+          i.icon.iconfont 
+          .name Category
+          .code &#xe699;
+        li
+          i.icon.iconfont 
+          .name close
+          .code &#xe69a;
+        li
+          i.icon.iconfont 
+          .name comments
+          .code &#xe69b;
+        li
+          i.icon.iconfont 
+          .name cry
+          .code &#xe69c;
+        li
+          i.icon.iconfont 
+          .name delete
+          .code &#xe69d;
+        li
+          i.icon.iconfont 
+          .name edit
+          .code &#xe69e;
+        li
+          i.icon.iconfont 
+          .name email
+          .code &#xe69f;
+        li
+          i.icon.iconfont 
+          .name favorite
+          .code &#xe6a0;
+        li
+          i.icon.iconfont 
+          .name form
+          .code &#xe6a2;
+        li
+          i.icon.iconfont 
+          .name help
+          .code &#xe6a3;
+        li
+          i.icon.iconfont 
+          .name information
+          .code &#xe6a4;
+        li
+          i.icon.iconfont 
+          .name less
+          .code &#xe6a5;
+        li
+          i.icon.iconfont 
+          .name more_unfold
+          .code &#xe6a6;
+        li
+          i.icon.iconfont 
+          .name more
+          .code &#xe6a7;
+        li
+          i.icon.iconfont 
+          .name pic
+          .code &#xe6a8;
+        li
+          i.icon.iconfont 
+          .name QRCode
+          .code &#xe6a9;
+        li
+          i.icon.iconfont 
+          .name refresh
+          .code &#xe6aa;
+        li
+          i.icon.iconfont 
+          .name RFQ
+          .code &#xe6ab;
+        li
+          i.icon.iconfont 
+          .name search
+          .code &#xe6ac;
+        li
+          i.icon.iconfont 
+          .name selected
+          .code &#xe6ad;
+        li
+          i.icon.iconfont 
+          .name set
+          .code &#xe6ae;
+        li
+          i.icon.iconfont 
+          .name Smile
+          .code &#xe6af;
+        li
+          i.icon.iconfont 
+          .name success
+          .code &#xe6b1;
+        li
+          i.icon.iconfont 
+          .name survey
+          .code &#xe6b2;
+        li
+          i.icon.iconfont 
+          .name training
+          .code &#xe6b3;
+        li
+          i.icon.iconfont 
+          .name ViewGallery
+          .code &#xe6b4;
+        li
+          i.icon.iconfont 
+          .name Viewlist
+          .code &#xe6b5;
+        li
+          i.icon.iconfont 
+          .name warning
+          .code &#xe6b6;
+        li
+          i.icon.iconfont 
+          .name wrong
+          .code &#xe6b7;
+        li
+          i.icon.iconfont 
+          .name account
+          .code &#xe6b8;
+        li
+          i.icon.iconfont 
+          .name add
+          .code &#xe6b9;
+        li
+          i.icon.iconfont 
+          .name atm
+          .code &#xe6ba;
+        li
+          i.icon.iconfont 
+          .name clock
+          .code &#xe6bb;
+        li
+          i.icon.iconfont 
+          .name remind
+          .code &#xe6bc;
+        li
+          i.icon.iconfont 
+          .name calendar
+          .code &#xe6bf;
+        li
+          i.icon.iconfont 
+          .name attachment
+          .code &#xe6c0;
+        li
+          i.icon.iconfont 
+          .name discount
+          .code &#xe6c5;
+        li
+          i.icon.iconfont 
+          .name service
+          .code &#xe6c7;
+        li
+          i.icon.iconfont 
+          .name print
+          .code &#xe6c9;
+        li
+          i.icon.iconfont 
+          .name box
+          .code &#xe6cb;
+        li
+          i.icon.iconfont 
+          .name process
+          .code &#xe6ce;
+        li
+          i.icon.iconfont 
+          .name beauty
+          .code &#xe6d2;
+        li
+          i.icon.iconfont 
+          .name electrical
+          .code &#xe6d4;
+        li
+          i.icon.iconfont 
+          .name home
+          .code &#xe6d7;
+        li
+          i.icon.iconfont 
+          .name electronics
+          .code &#xe6da;
+        li
+          i.icon.iconfont 
+          .name gifts
+          .code &#xe6db;
+        li
+          i.icon.iconfont 
+          .name lights
+          .code &#xe6de;
+        li
+          i.icon.iconfont 
+          .name sports
+          .code &#xe6e0;
+        li
+          i.icon.iconfont 
+          .name toys
+          .code &#xe6e1;
+        li
+          i.icon.iconfont 
+          .name auto
+          .code &#xe6e3;
+        li
+          i.icon.iconfont 
+          .name jewelry
+          .code &#xe6e4;
+        li
+          i.icon.iconfont 
+          .name trade-assurance
+          .code &#xe6e5;
+        li
+          i.icon.iconfont 
+          .name browse
+          .code &#xe6e6;
+        li
+          i.icon.iconfont 
+          .name rfq-qm
+          .code &#xe6e7;
+        li
+          i.icon.iconfont 
+          .name rfq-quantity
+          .code &#xe6e8;
+        li
+          i.icon.iconfont 
+          .name atm-away
+          .code &#xe6e9;
+        li
+          i.icon.iconfont 
+          .name rfq
+          .code &#xe6eb;
+        li
+          i.icon.iconfont 
+          .name scanning
+          .code &#xe6ec;
+        li
+          i.icon.iconfont 
+          .name compare
+          .code &#xe6ee;
+        li
+          i.icon.iconfont 
+          .name filter
+          .code &#xe6f1;
+        li
+          i.icon.iconfont 
+          .name pin
+          .code &#xe6f2;
+        li
+          i.icon.iconfont 
+          .name history
+          .code &#xe6f3;
+        li
+          i.icon.iconfont 
+          .name product-features
+          .code &#xe6f4;
+        li
+          i.icon.iconfont 
+          .name supplier-features
+          .code &#xe6f5;
+        li
+          i.icon.iconfont 
+          .name similar-product
+          .code &#xe6f6;
+        li
+          i.icon.iconfont 
+          .name link
+          .code &#xe6f7;
+        li
+          i.icon.iconfont 
+          .name cut
+          .code &#xe6f8;
+        li
+          i.icon.iconfont 
+          .name nav-list
+          .code &#xe6fa;
+        li
+          i.icon.iconfont 
+          .name image-text
+          .code &#xe6fb;
+        li
+          i.icon.iconfont 
+          .name text
+          .code &#xe6fc;
+        li
+          i.icon.iconfont 
+          .name move
+          .code &#xe6fd;
+        li
+          i.icon.iconfont 
+          .name subtract
+          .code &#xe6fe;
+        li
+          i.icon.iconfont 
+          .name dollar
+          .code &#xe702;
+        li
+          i.icon.iconfont 
+          .name raw
+          .code &#xe704;
+        li
+          i.icon.iconfont 
+          .name office
+          .code &#xe705;
+        li
+          i.icon.iconfont 
+          .name agriculture
+          .code &#xe707;
+        li
+          i.icon.iconfont 
+          .name machinery
+          .code &#xe709;
+        li
+          i.icon.iconfont 
+          .name assessed-Badge
+          .code &#xe70a;
+        li
+          i.icon.iconfont 
+          .name personal-center
+          .code &#xe70b;
+        li
+          i.icon.iconfont 
+          .name integral
+          .code &#xe70c;
+        li
+          i.icon.iconfont 
+          .name operation
+          .code &#xe70e;
+        li
+          i.icon.iconfont 
+          .name remind
+          .code &#xe713;
+        li
+          i.icon.iconfont 
+          .name download
+          .code &#xe714;
+        li
+          i.icon.iconfont 
+          .name map
+          .code &#xe715;
+        li
+          i.icon.iconfont 
+          .name bad
+          .code &#xe716;
+        li
+          i.icon.iconfont 
+          .name good
+          .code &#xe717;
+        li
+          i.icon.iconfont 
+          .name skip
+          .code &#xe718;
+        li
+          i.icon.iconfont 
+          .name play
+          .code &#xe719;
+        li
+          i.icon.iconfont 
+          .name stop
+          .code &#xe71a;
+        li
+          i.icon.iconfont 
+          .name compass
+          .code &#xe71b;
+        li
+          i.icon.iconfont 
+          .name security
+          .code &#xe71c;
+        li
+          i.icon.iconfont 
+          .name share
+          .code &#xe71d;
+        li
+          i.icon.iconfont 
+          .name store
+          .code &#xe722;
+        li
+          i.icon.iconfont 
+          .name manage-order
+          .code &#xe723;
+        li
+          i.icon.iconfont 
+          .name rejected-order
+          .code &#xe724;
+        li
+          i.icon.iconfont 
+          .name phone
+          .code &#xe725;
+        li
+          i.icon.iconfont 
+          .name bussiness-man
+          .code &#xe726;
+        li
+          i.icon.iconfont 
+          .name shoes
+          .code &#xe728;
+        li
+          i.icon.iconfont 
+          .name Mobile-phone
+          .code &#xe72a;
+        li
+          i.icon.iconfont 
+          .name email-filling
+          .code &#xe72d;
+        li
+          i.icon.iconfont 
+          .name favorites-filling
+          .code &#xe730;
+        li
+          i.icon.iconfont 
+          .name account-filling
+          .code &#xe732;
+        li
+          i.icon.iconfont 
+          .name credit-level
+          .code &#xe735;
+        li
+          i.icon.iconfont 
+          .name credit-level-filling
+          .code &#xe736;
+        li
+          i.icon.iconfont 
+          .name exl
+          .code &#xe73f;
+        li
+          i.icon.iconfont 
+          .name pdf
+          .code &#xe740;
+        li
+          i.icon.iconfont 
+          .name zip
+          .code &#xe741;
+        li
+          i.icon.iconfont 
+          .name sorting
+          .code &#xe743;
+        li
+          i.icon.iconfont 
+          .name copy
+          .code &#xe744;
+        li
+          i.icon.iconfont 
+          .name save
+          .code &#xe747;
+        li
+          i.icon.iconfont 
+          .name  inquiry-template
+          .code &#xe749;
+        li
+          i.icon.iconfont 
+          .name template-default
+          .code &#xe74a;
+        li
+          i.icon.iconfont 
+          .name libra
+          .code &#xe74c;
+        li
+          i.icon.iconfont 
+          .name survey
+          .code &#xe74e;
+        li
+          i.icon.iconfont 
+          .name ship
+          .code &#xe74f;
+        li
+          i.icon.iconfont 
+          .name bussiness-card
+          .code &#xe753;
+        li
+          i.icon.iconfont 
+          .name hot
+          .code &#xe756;
+        li
+          i.icon.iconfont 
+          .name data
+          .code &#xe757;
+        li
+          i.icon.iconfont 
+          .name trade
+          .code &#xe758;
+        li
+          i.icon.iconfont 
+          .name onepage
+          .code &#xe75a;
+        li
+          i.icon.iconfont 
+          .name signboard
+          .code &#xe75c;
+        li
+          i.icon.iconfont 
+          .name shuffling-banner
+          .code &#xe75e;
+        li
+          i.icon.iconfont 
+          .name component
+          .code &#xe75f;
+        li
+          i.icon.iconfont 
+          .name component-filling
+          .code &#xe760;
+        li
+          i.icon.iconfont 
+          .name color
+          .code &#xe761;
+        li
+          i.icon.iconfont 
+          .name color-filling
+          .code &#xe7cd;
+        li
+          i.icon.iconfont 
+          .name favorites
+          .code &#xe7ce;
+        li
+          i.icon.iconfont 
+          .name pic-filling
+          .code &#xe802;
+        li
+          i.icon.iconfont 
+          .name RFQ
+          .code &#xe803;
+        li
+          i.icon.iconfont 
+          .name RFQ-filling
+          .code &#xe804;
+        li
+          i.icon.iconfont 
+          .name original-image
+          .code &#xe806;
+        li
+          i.icon.iconfont 
+          .name logistic
+          .code &#xe811;
+        li
+          i.icon.iconfont 
+          .name Calculator
+          .code &#xe812;
+        li
+          i.icon.iconfont 
+          .name video
+          .code &#xe820;
+        li
+          i.icon.iconfont 
+          .name earth
+          .code &#xe828;
+        li
+          i.icon.iconfont 
+          .name task-management
+          .code &#xe829;
+        li
+          i.icon.iconfont 
+          .name trust
+          .code &#xe82a;
+        li
+          i.icon.iconfont 
+          .name password
+          .code &#xe82b;
+        li
+          i.icon.iconfont 
+          .name 3column
+          .code &#xe839;
+        li
+          i.icon.iconfont 
+          .name apparel
+          .code &#xe83a;
+        li
+          i.icon.iconfont 
+          .name bags
+          .code &#xe83b;
+        li
+          i.icon.iconfont 
+          .name folder
+          .code &#xe83c;
+        li
+          i.icon.iconfont 
+          .name 4column
+          .code &#xe83d;
+        li
+          i.icon.iconfont 
+          .name code
+          .code &#xe842;
+        li
+          i.icon.iconfont 
+          .name RFQ-filling
+          .code &#xe843;
+      h2#unicode- unicode引用
+      hr
+      p unicode是字体在网页端最原始的应用方式，特点是：
+      ul
+        li 兼容性最好，支持ie6+，及所有现代浏览器。
+        li 支持按字体的方式去动态调整图标大小，颜色等等。
+        li 但是因为是字体，所以不支持多色。只能使用平台里单色的图标，就算项目里有多色图标也会自动去色。
+      blockquote
+        p 注意：新版iconfont支持多色图标，这些多色图标在unicode模式下将不能使用，如果有需求建议使用symbol的引用方式
+      h3#- 挑选相应图标并获取字体编码，应用于页面
+      pre.
+      blockquote
+        p "iconfont"是你项目下的font-family。可以通过编辑项目查看，默认是"iconfont"。

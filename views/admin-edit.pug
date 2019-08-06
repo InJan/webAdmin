@@ -1,0 +1,103 @@
+extends layout
+
+block content
+  body
+    .layui-fluid
+      .layui-row
+        form.layui-form
+          .layui-form-item
+            label.layui-form-label(for='username')
+              span.x-red *
+              | 登录名
+            .layui-input-inline
+              input#username.layui-input(type='text', name='username', required='', lay-verify='required', autocomplete='off')
+            .layui-form-mid.layui-word-aux
+              span.x-red *
+              | 将会成为您唯一的登入名
+          .layui-form-item
+            label.layui-form-label(for='phone')
+              span.x-red *
+              | 手机
+            .layui-input-inline
+              input#phone.layui-input(type='text', name='phone', required='', lay-verify='phone', autocomplete='off')
+            .layui-form-mid.layui-word-aux
+              span.x-red *
+              | 将会成为您唯一的登入名
+          .layui-form-item
+            label.layui-form-label(for='L_email')
+              span.x-red *
+              | 邮箱
+            .layui-input-inline
+              input#L_email.layui-input(type='text', name='email', required='', lay-verify='email', autocomplete='off')
+            .layui-form-mid.layui-word-aux
+              span.x-red *
+          .layui-form-item
+            label.layui-form-label
+              span.x-red *
+              | 角色
+            .layui-input-block
+              input(type='checkbox', name='like1[write]', lay-skin='primary', title='超级管理员', checked='')
+              input(type='checkbox', name='like1[read]', lay-skin='primary', title='编辑人员')
+              input(type='checkbox', name='like1[write]', lay-skin='primary', title='宣传人员', checked='')
+          .layui-form-item
+            label.layui-form-label(for='L_pass')
+              span.x-red *
+              | 密码
+            .layui-input-inline
+              input#L_pass.layui-input(type='password', name='pass', required='', lay-verify='pass', autocomplete='off')
+            .layui-form-mid.layui-word-aux
+              | 6到16个字符
+          .layui-form-item
+            label.layui-form-label(for='L_repass')
+              span.x-red *
+              | 确认密码
+            .layui-input-inline
+              input#L_repass.layui-input(type='password', name='repass', required='', lay-verify='repass', autocomplete='off')
+          .layui-form-item
+            label.layui-form-label(for='L_repass')
+            button.layui-btn(lay-filter='add', lay-submit='')
+              | 增加
+    script.
+      layui.use(['form', 'layer'],
+      function() {
+      $ = layui.jquery;
+      var form = layui.form,
+      layer = layui.layer;
+      //自定义验证规则
+      form.verify({
+      nikename: function(value) {
+      if (value.length < 5) {
+      return '昵称至少得5个字符啊';
+      }
+      },
+      pass: [/(.+){6,12}$/, '密码必须6到12位'],
+      repass: function(value) {
+      if ($('#L_pass').val() != $('#L_repass').val()) {
+      return '两次密码不一致';
+      }
+      }
+      });
+      //监听提交
+      form.on('submit(add)',
+      function(data) {
+      console.log(data);
+      //发异步，把数据提交给php
+      layer.alert("增加成功", {
+      icon: 6
+      },
+      function() {
+      //关闭当前frame
+      xadmin.close();
+      // 可以对父窗口进行刷新
+      xadmin.father_reload();
+      });
+      return false;
+      });
+      });
+    script.
+      var _hmt = _hmt || []; (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      })();

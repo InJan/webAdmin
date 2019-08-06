@@ -1,3 +1,97 @@
 extends layout
 
 block content
+  body
+    .layui-fluid
+      .layui-row
+        form.layui-form.layui-form-pane(action='', method='post')
+          .layui-form-item
+            label.layui-form-label(for='name')
+              span.x-red *
+              | 角色名
+            .layui-input-inline
+              input#name.layui-input(type='text', name='name', required='', lay-verify='required', autocomplete='off')
+          .layui-form-item.layui-form-text
+            label.layui-form-label
+              | 拥有权限
+            table.layui-table.layui-input-block
+              tbody
+                tr
+                  td
+                    input(type='checkbox', name='like1[write]', lay-skin='primary', lay-filter='father', title='用户管理')
+                  td
+                    .layui-input-block
+                      input(name='id[]', lay-skin='primary', type='checkbox', title='用户停用', value='2')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='用户删除')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='用户修改')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='用户改密')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='用户列表')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='用户改密')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='用户列表')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='用户改密')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='用户列表')
+                tr
+                  td
+                    input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='文章管理', lay-filter='father')
+                  td
+                    .layui-input-block
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='文章添加')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='文章删除')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='文章修改')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='文章改密')
+                      input(name='id[]', lay-skin='primary', type='checkbox', value='2', title='文章列表')
+          .layui-form-item.layui-form-text
+            label.layui-form-label(for='desc')
+              | 描述
+            .layui-input-block
+              textarea#desc.layui-textarea(placeholder='请输入内容', name='desc')
+          .layui-form-item
+            button.layui-btn(lay-submit='', lay-filter='add') 增加
+    script.
+      layui.use(['form','layer'], function(){
+      $ = layui.jquery;
+      var form = layui.form
+      ,layer = layui.layer;
+      //自定义验证规则
+      form.verify({
+      nikename: function(value){
+      if(value.length < 5){
+      return '昵称至少得5个字符啊';
+      }
+      }
+      ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+      ,repass: function(value){
+      if($('#L_pass').val()!=$('#L_repass').val()){
+      return '两次密码不一致';
+      }
+      }
+      });
+      //监听提交
+      form.on('submit(add)', function(data){
+      console.log(data);
+      //发异步，把数据提交给php
+      layer.alert("增加成功", {icon: 6},function () {
+      // 获得frame索引
+      var index = parent.layer.getFrameIndex(window.name);
+      //关闭当前frame
+      parent.layer.close(index);
+      });
+      return false;
+      });
+      form.on('checkbox(father)', function(data){
+      if(data.elem.checked){
+      $(data.elem).parent().siblings('td').find('input').prop("checked", true);
+      form.render();
+      }else{
+      $(data.elem).parent().siblings('td').find('input').prop("checked", false);
+      form.render();
+      }
+      });
+      });
+    script.
+      var _hmt = _hmt || []; (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+      })();
