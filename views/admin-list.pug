@@ -29,7 +29,7 @@ block content
               button.layui-btn.layui-btn-danger(onclick='delAll()')
                 i.layui-icon 
                 | 批量删除
-              button.layui-btn(onclick="xadmin.open('添加用户','./admin-add.html',600,400)")
+              button.layui-btn(onclick="xadmin.open('添加用户','./admin-add',600,400)")
                 i.layui-icon 
                 | 添加
             .layui-card-body
@@ -61,7 +61,7 @@ block content
                     td.td-manage
                       a(onclick="member_stop(this,'10001')", href='javascript:;', title='启用')
                         i.layui-icon 
-                      a(title='编辑', onclick="xadmin.open('编辑','admin-edit.html')", href='javascript:;')
+                      a(title='编辑', onclick="xadmin.open('编辑','admin-edit')", href='javascript:;')
                         i.layui-icon 
                       a(title='删除', onclick="member_del(this,'要删除的id')", href='javascript:;')
                         i.layui-icon 
@@ -93,13 +93,13 @@ block content
       if($(obj).attr('title')=='启用'){
       //发异步把用户状态进行更改
       $(obj).attr('title','停用')
-      $(obj).find('i').html('&#xe62f;');
-      $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+      $(obj).find('i')('&#xe62f;');
+      $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled')('已停用');
       layer.msg('已停用!',{icon: 5,time:1000});
       }else{
       $(obj).attr('title','启用')
-      $(obj).find('i').html('&#xe601;');
-      $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+      $(obj).find('i')('&#xe601;');
+      $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled')('已启用');
       layer.msg('已启用!',{icon: 5,time:1000});
       }
       });

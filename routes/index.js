@@ -1,4 +1,5 @@
 const router = require('koa-router')()
+let dbCtrl = require('../models/dbCtrl')
 
 //index
 router.get('/', async (ctx, next) => {
@@ -27,7 +28,7 @@ router.get('/login', async (ctx, next) => {
 
 //member
 router.get('/member-list', async (ctx, next) => {
-  await ctx.render('member-list', {
+  await ctx.render('member-list', {    
   })
 })
 router.get('/member-del', async (ctx, next) => {
@@ -48,6 +49,17 @@ router.get('/member-add', async (ctx, next) => {
 })
 router.get('/member-password', async (ctx, next) => {
   await ctx.render('member-password', {
+  })
+})
+
+//subscriber-list
+router.get('/subscriber-list', async (ctx, next) => {
+  // dbCtrl.findAllInSubscriber().then((data)=>{
+  //   console.log(data);
+  // })
+  let docs = await dbCtrl.findAllInSubscriber();
+  await ctx.render('subscriber-list', {
+    data: docs
   })
 })
 

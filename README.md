@@ -11,3 +11,8 @@ Framework:
 Database:
 
     mongoDB
+
+
+$ npm start
+
+关闭Koa-logger

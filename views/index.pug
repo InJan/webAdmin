@@ -5,7 +5,7 @@ block content
     // 顶部开始
     .container
       .logo
-        a(href='./index') X-admin v2.2
+        a(href='./index') LVR-Admin v0.1
       .left_open
         a
           i.iconfont(title='展开左侧栏') 
@@ -55,36 +55,36 @@ block content
         ul#nav
           li
             a(href='javascript:;')
-              i.iconfont.left-nav-li(lay-tips='会员管理') 
-              cite 会员管理
+              i.iconfont.left-nav-li(lay-tips='用户管理') 
+              cite 用户管理
               i.iconfont.nav_right 
             ul.sub-menu
               li
-                a(onclick="xadmin.add_tab('统计页面','welcome')")
+                a(onclick="xadmin.add_tab('用户列表(静态表格)','member-list')")
                   i.iconfont 
-                  cite 统计页面
+                  cite 用户列表(静态表格)
               li
-                a(onclick="xadmin.add_tab('会员列表(静态表格)','member-list')")
+                a(onclick="xadmin.add_tab('用户列表(动态表格)','member-list1',true)")
                   i.iconfont 
-                  cite 会员列表(静态表格)
+                  cite 用户列表(动态表格)
               li
-                a(onclick="xadmin.add_tab('会员列表(动态表格)','member-list1',true)")
+                a(onclick="xadmin.add_tab('订阅列表','subscriber-list')")
                   i.iconfont 
-                  cite 会员列表(动态表格)
+                  cite 订阅列表
               li
-                a(onclick="xadmin.add_tab('会员删除','member-del')")
+                a(onclick="xadmin.add_tab('用户删除','member-del')")
                   i.iconfont 
-                  cite 会员删除
+                  cite 用户删除
               li
                 a(href='javascript:;')
                   i.iconfont 
-                  cite 会员管理
+                  cite 用户管理
                   i.iconfont.nav_right 
                 ul.sub-menu
                   li
-                    a(onclick="xadmin.add_tab('会员删除','member-del')")
+                    a(onclick="xadmin.add_tab('用户删除','member-del')")
                       i.iconfont 
-                      cite 会员删除
+                      cite 用户删除
                   li
                     a(onclick="xadmin.add_tab('等级管理','member-list1')")
                       i.iconfont 
