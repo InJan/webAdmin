@@ -4,7 +4,8 @@ var url = "mongodb://localhost:27017/longervisioncn";
 mongoose.connect(url,{ useNewUrlParser: true },(err,res)=>{
     if(err){
         console.log(err)
-    }})
+    }
+})
 //主页内容
 let indexContentSchema = new mongoose.Schema({
     navlist: {
