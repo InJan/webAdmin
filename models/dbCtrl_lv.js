@@ -17,6 +17,7 @@ const findAllInSubscriber = () => {
         if(err){
           reject(err);
         }
+        console.log(doc)
         resolve(doc);
       });
     });
