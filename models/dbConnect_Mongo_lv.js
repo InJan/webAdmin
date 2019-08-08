@@ -1,9 +1,12 @@
 let mongoose = require('mongoose')
 
 var url = "mongodb://localhost:27017/longervisioncn";
-mongoose.connect(url,{ useNewUrlParser: true },(err,res)=>{
+var db = mongoose.createConnection(url,{ useNewUrlParser: true },(err,res)=>{
     if(err){
         console.log(err)
+    }
+    else{
+        console.log("DB success in LV")
     }
 })
 //主页内容
@@ -64,6 +67,6 @@ MongoDB = {
     hardwareProducts: mongoose.model('hardwareProducts',hardwareProductsSchema,'hardwareProducts'),
     softwareProducts: mongoose.model('softwareProducts',softwareProductsSchema,'softwareProducts'),
     contactUs: mongoose.model('contactUs',contactUsSchema,'contactUs'),
-    subscriber: mongoose.model('subscriber',subscriberSchema),
+    subscriber: db.model('subscribers',subscriberSchema),
 }
 module.exports = MongoDB

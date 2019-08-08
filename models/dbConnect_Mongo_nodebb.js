@@ -1,9 +1,12 @@
 let mongoose = require('mongoose')
 
 var url = "mongodb://localhost:27017/nodebb";
-mongoose.connect(url,{ useNewUrlParser: true },(err,res)=>{
+var db = mongoose.createConnection(url,{ useNewUrlParser: true },(err,res)=>{
     if(err){
         console.log(err)
+	}
+	else{
+        console.log("DB success in nodebb")
     }
 })
 
@@ -32,7 +35,7 @@ let usersSchema = new mongoose.Schema({
 })
 
 let mongoDB ={
-    users: mongoose.model('objects',usersSchema)
+    users: db.model('objects',usersSchema)
 }
 
 module.exports = mongoDB

@@ -2,7 +2,7 @@ const mongodb = require("./dbConnect_Mongo_lv.js")
 
 const findOneByAddressInSubsciber = (address) => {
     return new Promise((resolve, reject) => {
-        mongodb.subscriber.findOne({ address: address }, (err, doc) => {
+      mongodb.subscriber.findOne({ address: address }, (err, doc) => {
         if(err){
           reject(err);
         }
@@ -13,11 +13,10 @@ const findOneByAddressInSubsciber = (address) => {
 
 const findAllInSubscriber = () => {
     return new Promise((resolve, reject) => {
-        mongodb.subscriber.find({}, (err, doc) => {
+      mongodb.subscriber.find({}, (err, doc) => {
         if(err){
           reject(err);
         }
-        console.log(doc)
         resolve(doc);
       });
     });
