@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  script(type='text/javascript', src='/javascripts/xadmin.js')
+  script(type='text/javascript', src='/javascripts/xcity.js')
   body
     .x-nav
       span.layui-breadcrumb
@@ -50,7 +50,7 @@ block content
                   $('#x-city').xcity();
                   //传默认值 
                   $('#x-city').xcity('广东','广州市','东山区');
-    script(type='text/javascript', src='./js/xcity.js')
+    script(type='text/javascript', src='./javascripts/xcity.js')
     script.
       layui.use(['form','code'], function(){
       form = layui.form;

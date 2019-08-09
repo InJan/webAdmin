@@ -1,6 +1,6 @@
 const router = require('koa-router')()
-let dbCtrl_lv = require('../models/dbCtrl_lv')
-let dbCtrl_nodebb = require('../models/dbCtrl_nodebb')
+let dbCtrl_lv = require('../modules/dbCtrl_lv')
+let dbCtrl_nodebb = require('../modules/dbCtrl_nodebb')
 //index
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
@@ -13,8 +13,15 @@ router.get('/index', async (ctx, next) => {
   })
 })
 router.get('/welcome', async (ctx, next) => {
+  let docUsers = await dbCtrl_nodebb.findAllInUsers()
+  let docSubers = await dbCtrl_lv.findAllInSubscriber();
+  var arrUsers = Object.keys(docUsers)
+  var arrSubers = Object.keys(docSubers)
+  // console.log(typeof(arrSubers))
+  // console.log(arrSubers)
   await ctx.render('welcome', {
-    // title: 'Welcome to the webAdmin!'
+    dataUsers: arrUsers,
+    dataSubersLength: arrSubers.length,
   })
 })
 router.get('/welcome1', async (ctx, next) => {

@@ -6,7 +6,7 @@ var db = mongoose.createConnection(url,{ useNewUrlParser: true },(err,res)=>{
         console.log(err)
     }
     else{
-        console.log("DB success in LV")
+        console.log("DB Mongo/LV success ")
     }
 })
 //主页内容
