@@ -8,9 +8,9 @@
 function goPage(pno){
     var itable = document.getElementById("idData");
     var num = itable.rows.length;//表格所有行数(所有记录数)
-    console.log("总行数"+num);
+    // console.log("总行数"+num);
     var totalPage = 0;//总页数
-    // var pageSize = 7;//每页显示行数
+    var pageSize = 7;//每页显示行数
     //总共分几页
     if(num/pageSize > parseInt(num/pageSize)){
         totalPage=parseInt(num/pageSize)+1;
