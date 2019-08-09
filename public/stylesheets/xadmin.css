@@ -54,14 +54,15 @@ body{
     color: #888;
     padding: 5px;
     min-width: 15px;
-    border: 1px solid #E2E2E2;
+    /* border: 1px solid #E2E2E2; */
 
 }
 .page span{
     display: inline-block;
     padding: 5px;
     min-width: 15px;
-    border: 1px solid #E2E2E2;
+    /* border: 1px solid #E2E2E2; */
+    cursor: pointer;
 }
 .page span.current{
     display: inline-block;

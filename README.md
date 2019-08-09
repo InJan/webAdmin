@@ -15,4 +15,7 @@ Database:
 
 $ npm start
 
-关闭Koa-logger
+
+
+(测试需要)
+现已关闭Koa-logger

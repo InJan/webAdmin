@@ -1,7 +1,7 @@
 extends layout
 
 block content
-
+  script(type='text/javascript', src='/javascripts/pagination.js')
   body
     .x-nav
       span.layui-breadcrumb
@@ -36,6 +36,7 @@ block content
                     th Email
                     th 状态
                     th 操作
+              table.layui-table.layui-form#idData
                 tbody
                 each docs in data
                   tr
@@ -59,15 +60,16 @@ block content
                         i.layui-icon 
                   
             .layui-card-body
-              .page
-                div
-                  a.prev(href='') <<
-                  a.num(href='') 1
-                  span.current 2
-                  a.num(href='') 3
-                  a.num(href='') 489
-                  a.next(href='') >>
+              .page#barcon
+                //- div
+                //-   a.prev(href='') <<
+                //-   a.num(href='') 1
+                //-   span.current 2
+                //-   a.num(href='') 3
+                //-   a.num(href='') 489
+                //-   a.next(href='') >>
     script.
+      goPage(1)
       layui.use(['laydate','form'], function(){
       var laydate = layui.laydate;
       var  form = layui.form;
