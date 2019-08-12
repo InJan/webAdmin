@@ -1,5 +1,5 @@
 const mysql = {
-    databaseName: 'webadmin',
+    database: 'webadmin',
     username: 'www',
     password: 'www',
     host: 'localhost',

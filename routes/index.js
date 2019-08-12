@@ -1,6 +1,8 @@
 const router = require('koa-router')()
 let dbCtrl_lv = require('../modules/dbCtrl_lv')
 let dbCtrl_nodebb = require('../modules/dbCtrl_nodebb')
+let adminModel = require('../modules/controllers/dbCtrl_admin')
+
 //index
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
@@ -93,7 +95,9 @@ router.get('/city', async (ctx, next) => {
 
 //admin
 router.get('/admin-list', async (ctx, next) => {
+  let docs = await adminModel.getAdminList()
   await ctx.render('admin-list', {
+    data: docs
   })
 })
 router.get('/admin-role', async (ctx, next) => {
@@ -104,8 +108,12 @@ router.get('/admin-add', async (ctx, next) => {
   await ctx.render('admin-add', {
   })
 })
-router.get('/admin-edit', async (ctx, next) => {
+router.get('/admin-edit/:id', async (ctx, next) => {
+  let id = ctx.params.id
+  let docs = await adminModel.getOneAdminByID(id)
+  console.log("admin-edit/:id"+docs)
   await ctx.render('admin-edit', {
+    data: docs
   })
 })
 router.get('/role-add', async (ctx, next) => {

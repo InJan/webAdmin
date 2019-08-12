@@ -1,7 +1,8 @@
 const Sequelize = require('sequelize')
-// var sequelize = new Sequelize('database', 'username', 'password', {
-var sequelize = new Sequelize('webadmin', 'www', 'www', {
-    host: 'localhost',
+const MysqlConfig = require('../config/config');
+
+var sequelize = new Sequelize(MysqlConfig.database,MysqlConfig.username, MysqlConfig.password, {
+    host: MysqlConfig.host,
     dialect: 'mysql',//|'sqlite'|'postgres'|'mssql'
     
     pool: {
@@ -10,28 +11,32 @@ var sequelize = new Sequelize('webadmin', 'www', 'www', {
       idle: 10000,
       acquire: 30000
     },
-
+    // disable logging; default: console.log
+    logging: true,
     //SQlite only
     storge: 'path/to/database/sqlite'
 });
 
-module.exports = {
-    sequelize,
-}
+/**test mysql connection */
 sequelize
     .authenticate()
     .then(()=>{
-        console.log('DB mysql connect success')
+        console.log('DB mysql/webadmin connect success')
     })
     .catch(err =>{
-        console.log('DB mysql connect failure',err)
+        console.log('DB mysql/webadmin connect failure',err)
     })
+    
+module.exports = {
+    sequelize,
+}
+
 
 // const administrators = sequelize.define(
 //     'administrators',
 //     {
 //         id:{
-//             type: DataTypes.INTEGER(11),
+//             type: Sequelize.INTEGER(11),
 //             autoIncrement: true,
 //             primaryKey: true
 //         },
@@ -47,29 +52,30 @@ sequelize
 //         status: Sequelize.STRING(100),
 //     },
 //     {
-//         timestamps: false
+//         timestamps: false,
+//         freezeTableName: true
 //     }
 // )
-transaction 
-sequelize.transaction().then((t) =>{
-    var now = Date.now()
-    administrators.create({
-        adminName:'test01',
-        password: 'test01',
-        number: '18862601693',
-        email: 'dfa@qwe.com',
-        description: 'this is test',
-        createdAt: now,
-        updatedAt: now,
-        status: '1'
-    },
-    {
-        transaction: t
-    }).then(()=>{
-        t.commit();
-    }).catch((error)=>{
-        console.log(error);
-        t.rollback();
-        console.log(t)
-    })
-})
+// administrators.sync({})
+// sequelize.transaction().then((t) =>{
+//     var now = Date.now()
+//     administrators.create({
+//         adminName:'test01',
+//         password: 'test01',
+//         number: '18862601693',
+//         email: 'dfa@qwe.com',
+//         description: 'this is test',
+//         createdAt: now,
+//         updatedAt: now,
+//         status: '1'
+//     },
+//     {
+//         transaction: t
+//     }).then(()=>{
+//         t.commit();
+//     }).catch((error)=>{
+//         // console.log(error);
+//         t.rollback();
+//         // console.log(t)
+//     })
+// })

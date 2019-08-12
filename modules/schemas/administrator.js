@@ -1,10 +1,11 @@
 const moment = require('moment')
-module.exports = function(sequelize, DataTypes){
+const Sequelize = require('sequelize')
+module.exports = function(sequelize){
     return sequelize.define(
         'administrators',
         {
             id:{
-                type: DataTypes.INTEGER(11),
+                type: Sequelize.INTEGER(11),
                 autoIncrement: true,
                 primaryKey: true
             },
