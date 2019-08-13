@@ -13,7 +13,7 @@ block content
               input#username.layui-input(type='text', name='adminname', required='', lay-verify='required', autocomplete='off')
             .layui-form-mid.layui-word-aux
               span.x-red *
-              | 原名称：#{docs}
+              | 原名称：#{data.adminName}
           .layui-form-item
             label.layui-form-label(for='phone')
               span.x-red *
@@ -22,6 +22,7 @@ block content
               input#phone.layui-input(type='text', name='phone', required='', lay-verify='phone', autocomplete='off')
             .layui-form-mid.layui-word-aux
               span.x-red *
+              | 原手机：#{data.number}
           .layui-form-item
             label.layui-form-label(for='L_email')
               span.x-red *
@@ -30,6 +31,7 @@ block content
               input#L_email.layui-input(type='text', name='email', required='', lay-verify='email', autocomplete='off')
             .layui-form-mid.layui-word-aux
               span.x-red *
+              | 原邮箱：#{data.email}
           .layui-form-item
             label.layui-form-label
               span.x-red *
@@ -59,7 +61,7 @@ block content
       $('.layui-btn').click(()=>{
         //- console.log('******Ajax******')
         $.ajax({
-          url: "/admin-edit",
+          url: "/admin-edit/"+#{data.id},
           data: $('.layui-form').serialize(),
           type: "POST",
           cache: false,

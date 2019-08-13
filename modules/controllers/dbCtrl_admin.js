@@ -27,6 +27,13 @@ class adminModel{
             }
         })
     }
+    static async getOneAdminByName(name){
+        return await admin.findOne({
+            where:{
+                adminName: name,
+            }
+        })
+    }
 
     static async getAdminList(){
         return await admin.findAll()
@@ -41,9 +48,29 @@ class adminModel{
     }
 
     static async alterAdmin(id,data){
-        var obj = getOneAdminByID(id)
-        obj = data
-        return await obj.save()
+        
+        return await admin.update(data,{
+            where:{
+                id: id
+            }
+        })
+    }
+    
+    static async validatePassword(adminName,password){
+        let adminObj = await admin.findOne({
+            where:{
+                adminName: adminName,
+            }
+        })
+        if(adminObj){
+            if(password == adminObj.password){
+                return 3
+            }else{
+                return 2;
+            }
+        }else{
+            return 1;
+        }
     }
 }
 

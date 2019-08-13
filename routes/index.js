@@ -111,7 +111,9 @@ router.get('/admin-add', async (ctx, next) => {
 router.get('/admin-edit/:id', async (ctx, next) => {
   let id = ctx.params.id
   let docs = await adminModel.getOneAdminByID(id)
-  console.log("admin-edit/:id"+docs)
+  // docs = JSON.stringify(docs)
+  // docs = docs[0].toObject();
+  // console.log(typeof(docs.id))
   await ctx.render('admin-edit', {
     data: docs
   })

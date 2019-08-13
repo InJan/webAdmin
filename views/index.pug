@@ -9,44 +9,44 @@ block content
       .left_open
         a
           i.iconfont(title='展开左侧栏') 
-      ul.layui-nav.left.fast-add(lay-filter='')
-        li.layui-nav-item
-          a(href='javascript:;') +新增
-          dl.layui-nav-child
-            // 二级菜单
-            dd
-              a(onclick="xadmin.open('最大化','http://www.baidu.com','','',true)")
-                i.iconfont 
-                | 弹出最大化
-            dd
-              a(onclick="xadmin.open('弹出自动宽高','http://www.baidu.com')")
-                i.iconfont 
-                | 弹出自动宽高
-            dd
-              a(onclick="xadmin.open('弹出指定宽高','http://www.baidu.com',500,300)")
-                i.iconfont 
-                | 弹出指定宽高
-            dd
-              a(onclick="xadmin.add_tab('在tab打开','member-list')")
-                i.iconfont 
-                | 在tab打开
-            dd
-              a(onclick="xadmin.add_tab('在tab打开刷新','member-del',true)")
-                i.iconfont 
-                | 在tab打开刷新
+      //- ul.layui-nav.left.fast-add(lay-filter='')
+      //-   li.layui-nav-item
+      //-     a(href='javascript:;') +新增
+      //-     dl.layui-nav-child
+      //-       // 二级菜单
+      //-       dd
+      //-         a(onclick="xadmin.open('最大化','http://www.baidu.com','','',true)")
+      //-           i.iconfont 
+      //-           | 弹出最大化
+      //-       dd
+      //-         a(onclick="xadmin.open('弹出自动宽高','http://www.baidu.com')")
+      //-           i.iconfont 
+      //-           | 弹出自动宽高
+      //-       dd
+      //-         a(onclick="xadmin.open('弹出指定宽高','http://www.baidu.com',500,300)")
+      //-           i.iconfont 
+      //-           | 弹出指定宽高
+      //-       dd
+      //-         a(onclick="xadmin.add_tab('在tab打开','member-list')")
+      //-           i.iconfont 
+      //-           | 在tab打开
+      //-       dd
+      //-         a(onclick="xadmin.add_tab('在tab打开刷新','member-del',true)")
+      //-           i.iconfont 
+      //-           | 在tab打开刷新
       ul.layui-nav.right(lay-filter='')
         li.layui-nav-item
           a(href='javascript:;') admin
           dl.layui-nav-child
             // 二级菜单
-            dd
-              a(onclick="xadmin.open('个人信息','http://www.baidu.com')") 个人信息
-            dd
-              a(onclick="xadmin.open('切换帐号','http://www.baidu.com')") 切换帐号
+            //- dd
+            //-   a(onclick="xadmin.open('个人信息','http://www.baidu.com')") 个人信息
+            //- dd
+            //-   a(onclick="xadmin.open('切换帐号','login')") 切换帐号
             dd
               a(href='./login') 退出
         li.layui-nav-item.to-index
-          a(href='/') 前台首页
+          a(href='http://longervisionrobot.com') 前台首页
     // 顶部结束
     // 中部开始
     // 左侧菜单开始
@@ -81,10 +81,10 @@ block content
                     a(onclick="xadmin.add_tab('用户删除','member-del')")
                       i.iconfont 
                       cite 用户删除
-                  li
-                    a(onclick="xadmin.add_tab('等级管理','member-list1')")
-                      i.iconfont 
-                      cite 等级管理
+                  //- li
+                  //-   a(onclick="xadmin.add_tab('等级管理','member-list1')")
+                  //-     i.iconfont 
+                  //-     cite 等级管理
               li
                 a(onclick="xadmin.add_tab('统计页面','welcome1')")
                   i.iconfont 
@@ -113,18 +113,18 @@ block content
                 a(onclick="xadmin.add_tab('管理员列表','admin-list')")
                   i.iconfont 
                   cite 管理员列表
-              li
-                a(onclick="xadmin.add_tab('角色管理','admin-role')")
-                  i.iconfont 
-                  cite 角色管理
-              li
-                a(onclick="xadmin.add_tab('权限分类','admin-cate')")
-                  i.iconfont 
-                  cite 权限分类
-              li
-                a(onclick="xadmin.add_tab('权限管理','admin-rule')")
-                  i.iconfont 
-                  cite 权限管理
+              //- li
+              //-   a(onclick="xadmin.add_tab('角色管理','admin-role')")
+              //-     i.iconfont 
+              //-     cite 角色管理
+              //- li
+              //-   a(onclick="xadmin.add_tab('权限分类','admin-cate')")
+              //-     i.iconfont 
+              //-     cite 权限分类
+              //- li
+              //-   a(onclick="xadmin.add_tab('权限管理','admin-rule')")
+              //-     i.iconfont 
+              //-     cite 权限管理
           //- li
           //-   a(href='javascript:;')
           //-     i.iconfont.left-nav-li(lay-tips='分类管理') 
@@ -204,18 +204,18 @@ block content
                 a(href='login', target='_blank')
                   i.iconfont 
                   cite 登录页面
-              li
-                a(onclick="xadmin.add_tab('错误页面','error')")
-                  i.iconfont 
-                  cite 错误页面
-              li
-                a(onclick="xadmin.add_tab('示例页面','demo')")
-                  i.iconfont 
-                  cite 示例页面
-              li
-                a(onclick="xadmin.add_tab('更新日志','log')")
-                  i.iconfont 
-                  cite 更新日志
+              //- li
+              //-   a(onclick="xadmin.add_tab('错误页面','error')")
+              //-     i.iconfont 
+              //-     cite 错误页面
+              //- li
+              //-   a(onclick="xadmin.add_tab('示例页面','demo')")
+              //-     i.iconfont 
+              //-     cite 示例页面
+              //- li
+              //-   a(onclick="xadmin.add_tab('更新日志','log')")
+              //-     i.iconfont 
+              //-     cite 更新日志
           //- li
           //-   a(href='javascript:;')
           //-     i.iconfont.left-nav-li(lay-tips='第三方组件') 

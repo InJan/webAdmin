@@ -8,13 +8,14 @@ block content
       .message WebAdmin1.0-管理登录
       #darkbannerwrap
       form.layui-form(method='post')
-        input.layui-input(name='username', placeholder='用户名', type='text', lay-verify='required')
+        input.layui-input(name='adminname', placeholder='用户名', type='text', lay-verify='required')
         hr.hr15
         input.layui-input(name='password', lay-verify='required', placeholder='密码', type='password')
         hr.hr15
         input(value='登录', lay-submit='', lay-filter='login', style='width:100%;', type='submit')
         hr.hr20
     script.
+      
       $(function  () {
       layui.use('form', function(){
       var form = layui.form;
@@ -23,10 +24,41 @@ block content
       //   });
       //监听提交
       form.on('submit(login)', function(data){
-      // alert(888)
-      layer.msg(JSON.stringify(data.field),function(){
-      location.href='index'
-      });
+        $.ajax({
+          url: "/login",
+          data: $('.layui-form').serialize(),
+          type: "POST",
+          cache: false,
+          dataType: 'json',
+          success: function(msg){
+            switch(msg.resData){
+              case 1:
+                layer.alert("用户名不存在", {icon: 6},()=>{
+                  //关闭当前frame
+                  xadmin.close();
+                // 可以对父窗口进行刷新
+                  xadmin.father_reload();
+              });
+              break;
+              case 2:
+                layer.alert("密码不正确", {icon: 6},()=>{
+                  xadmin.close();
+                });
+                break;
+              case 3:
+                layer.alert('登录成功',{icon: 6},()=>{
+                  xadmin.close();
+                  window.location.href = "localhost:3000"
+                })
+            }
+          },
+          error: function (msg) {
+              layer.alert("失败", {icon: 6},()=>{
+              xadmin.close();
+            });
+          }
+        });
+      //- })
       return false;
       });
       });

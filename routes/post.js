@@ -9,11 +9,11 @@ router.post('/admin-add', async (ctx, next) =>{
         email : ctx.request.body.email,
         desciption : ctx.request.body.desciption,
     }
-    if(!adminModel.getOneAdmin(admin.adminName)){
+    if(await adminModel.getOneAdminByName(admin.adminName)){
         ctx.body = {
             resData: 2
         };
-        console.log('has existed')
+        // console.log('has existed')
     }else{
         ctx.body = {
             resData: 1
@@ -22,7 +22,7 @@ router.post('/admin-add', async (ctx, next) =>{
     }
 })
 
-router.post('/admin-edit', async (ctx, next) =>{
+router.post('/admin-edit/:id', async (ctx, next) =>{
     let admin = {
         adminName : ctx.request.body.adminname,
         password : ctx.request.body.pass,
@@ -30,16 +30,41 @@ router.post('/admin-edit', async (ctx, next) =>{
         email : ctx.request.body.email,
         desciption : ctx.request.body.desciption,
     }
-    if(!adminModel.getOneAdmin(admin.adminName)){
+    let id = ctx.params.id
+    if(await adminModel.getOneAdminByName(admin.adminName)){
         ctx.body = {
             resData: 2
         };
-        console.log('has existed')
+        // console.log('hasn't existed')
     }else{
         ctx.body = {
             resData: 1
         };
-        return await adminModel.alterAdmin(admin)
+        return await adminModel.alterAdmin(id,admin)
+    }
+})
+
+router.post('/login', async (ctx, next) =>{
+    let admin = {
+        adminName : ctx.request.body.adminname,
+        password : ctx.request.body.password,
+    }
+    switch(await adminModel.validatePassword(admin.adminName,admin.password)){
+        case 1:
+            ctx.body = {
+                resData: 1
+            };
+            break;
+        case 2:
+            ctx.body = {
+                resData: 2
+            };
+            break;
+        case 3:
+            ctx.session.user = admin.adminName
+            ctx.body = {
+                resData: 3
+            };           
     }
 })
 
