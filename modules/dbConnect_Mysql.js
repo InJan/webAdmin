@@ -12,6 +12,7 @@ var sequelize = new Sequelize(MysqlConfig.database,MysqlConfig.username, MysqlCo
       acquire: 30000
     },
     // disable logging; default: console.log
+    //executing log
     logging: true,
     //SQlite only
     storge: 'path/to/database/sqlite'
