@@ -34,27 +34,26 @@ block content
             switch(msg.resData){
               case 1:
                 layer.alert("用户名不存在", {icon: 6},()=>{
-                  //关闭当前frame
-                  xadmin.close();
                 // 可以对父窗口进行刷新
                   xadmin.father_reload();
               });
               break;
               case 2:
                 layer.alert("密码不正确", {icon: 6},()=>{
-                  xadmin.close();
+                  xadmin.father_reload();
                 });
                 break;
               case 3:
-                layer.alert('登录成功',{icon: 6},()=>{
-                  xadmin.close();
-                  window.location.href = "localhost:3000"
+                layer.alert('登录成功',{icon: 1},()=>{
                 })
+                setTimeout(()=>{
+                  window.location.href = "/"
+                },500)
             }
           },
           error: function (msg) {
               layer.alert("失败", {icon: 6},()=>{
-              xadmin.close();
+              xadmin.father_reload();
             });
           }
         });

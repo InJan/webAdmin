@@ -5,12 +5,23 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const config = require('./config/config');
+const session = require('koa-session-minimal')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
 const post = require('./routes/post')
 // error handler
 onerror(app)
+
+const CONFIG = {
+  user: config.database.USERNAME,
+  password: config.database.PASSWORD,
+  database: config.database.DATABASE,
+  host: config.database.HOST,
+  maxAge:86400000,
+}
+app.use(session(CONFIG,app))
 
 // middlewares
 app.use(bodyparser({

@@ -5,9 +5,15 @@ let adminModel = require('../modules/controllers/dbCtrl_admin')
 
 //index
 router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Welcome to the webAdmin!'
-  })
+  if(!ctx.session.user){
+    await ctx.render('login', {
+    })
+  }else{
+    await ctx.render('index', {
+      title: 'Welcome to the webAdmin!',
+      session: ctx.session,
+    })
+  }
 })
 router.get('/index', async (ctx, next) => {
   await ctx.render('index', {

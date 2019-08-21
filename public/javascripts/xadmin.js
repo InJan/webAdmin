@@ -105,7 +105,8 @@
 	 * @return {[type]} [description]
 	 */
 	Xadmin.prototype.close = function() {
-		var index = parent.layer.getFrameIndex(window.name);
+    var index = parent.layer.getFrameIndex(window.name);
+    console.log(index);
     	parent.layer.close(index);
 	};
   /**
