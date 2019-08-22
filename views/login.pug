@@ -44,6 +44,11 @@ block content
                 });
                 break;
               case 3:
+                if (msg.resData.returnCode == '000000') {
+                  sessionStorage.setItem('login-token', msg.resData.result.token) // 用sessionStorage把token存下来
+                } else {
+                  sessionStorage.setItem('login-token', null) // 将token清空
+                }
                 layer.alert('登录成功',{icon: 1},()=>{
                 })
                 setTimeout(()=>{

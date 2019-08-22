@@ -1,4 +1,5 @@
 const router = require('koa-router')()
+const jwt = require('jsonwebtoken')
 let adminModel = require('../modules/controllers/dbCtrl_admin')
 //admin-add
 router.post('/admin-add', async (ctx, next) =>{
@@ -61,8 +62,11 @@ router.post('/login', async (ctx, next) =>{
             };
             break;
         case 3:
+            let secret = 'webAdmin' // 指定密钥
+            let token = jwt.sign(userToken, secret, { expiresIn: '1h' }) // 签发token
             ctx.session.user = admin.adminName
             ctx.body = {
+                token: token,
                 resData: 3
             };           
     }

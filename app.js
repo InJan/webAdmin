@@ -14,6 +14,10 @@ const post = require('./routes/post')
 // error handler
 onerror(app)
 
+//secret and Time
+const jwtSecret = 'webAdmin'
+const tokenExpiresTime = 1000 * 60 * 60 * 24 * 7
+
 const CONFIG = {
   user: config.database.USERNAME,
   password: config.database.PASSWORD,
@@ -42,6 +46,10 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start
   // console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
+
+app.use(koaJwt({secret:jwtSecret}).unless({
+  path:[/^\/login/]
+}))
 
 // routes
 app.use(index.routes(), index.allowedMethods())
