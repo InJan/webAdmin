@@ -32,3 +32,10 @@ mysql>grant all privileges on webadmin.* to 'www'@localhost identified by 'www';
 program
 $npm install
 $npm start
+
+something need to be finished 
+Token login authenication
+
+add Pages 
+
+and write doc
