@@ -4,23 +4,23 @@ let dbCtrl_nodebb = require('../modules/dbCtrl_nodebb')
 let adminModel = require('../modules/controllers/dbCtrl_admin')
 
 //设置Bearer Token请求头
-router.beforeEach((to, from, next) => {
-  const token = sessionStorage.getItem('login-token')
-  if (to.path === '/login') { // 如果是跳转到登录页的
-    if (token !== 'null' && token !== null) {
-      next('/') // 如果有token就转向todolist不返回登录页
-    }
-    next('/login') // 否则跳转回登录页
-  } else {
-    //store.commit('SET_ROUTER',to.path)
-    if (!!token && token !== 'null' && token !== null) {
-       axios.defaults.headers.common['Authorization'] = 'Bearer ' + token // 注意Bearer后有个空格
-      next() // 如果有token就正常转向
-    } else {
-      next('/') // 否则跳转回登录页
-    }
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   const token = sessionStorage.getItem('login-token')
+//   if (to.path === '/login') { // 如果是跳转到登录页的
+//     if (token !== 'null' && token !== null) {
+//       next('/') // 如果有token就转向todolist不返回登录页
+//     }
+//     next('/login') // 否则跳转回登录页
+//   } else {
+//     //store.commit('SET_ROUTER',to.path)
+//     if (!!token && token !== 'null' && token !== null) {
+//        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token // 注意Bearer后有个空格
+//       next() // 如果有token就正常转向
+//     } else {
+//       next('/') // 否则跳转回登录页
+//     }
+//   }
+// })
 
 //index
 router.get('/', async (ctx, next) => {

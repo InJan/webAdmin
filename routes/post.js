@@ -50,6 +50,9 @@ router.post('/login', async (ctx, next) =>{
         adminName : ctx.request.body.adminname,
         password : ctx.request.body.password,
     }
+    let userName = {
+        username : ctx.request.body.adminname,
+    }
     switch(await adminModel.validatePassword(admin.adminName,admin.password)){
         case 1:
             ctx.body = {
@@ -63,8 +66,9 @@ router.post('/login', async (ctx, next) =>{
             break;
         case 3:
             let secret = 'webAdmin' // 指定密钥
-            let token = jwt.sign(userToken, secret, { expiresIn: '1h' }) // 签发token
+            let token = jwt.sign(userName, secret, { expiresIn: '1h' }) // 签发token
             ctx.session.user = admin.adminName
+            ctx.status = 200
             ctx.body = {
                 token: token,
                 resData: 3

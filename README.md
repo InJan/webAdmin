@@ -16,11 +16,10 @@ Koa-logger:主要用途，控制台输出请求回应的状态。(测试需要�
 
 pagination.js 的使用需要在页面js 中写goPage(pageNum)//pageNum开始显示页码(首发)
 -------
-/dbConnect_Mysql.js 中
-    // disable logging; default: console.log
-    //executing log
-    logging: true,
-改为 logging: false; 这不输出sql executing log
+//dbConnect_Mysql.js 中
+//logging: false;
+//logging: console.log;
+是否输出sql executing log
 ------
 
 #部署注意事项

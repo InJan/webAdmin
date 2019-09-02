@@ -9,13 +9,13 @@ const nameToToken = async function (ctx) {
     try {
         const userInfo = await adminModel.getOneAdminByName(data.adminname)
         if (userInfo != null) {
-            let userToken = {
-                username: userInfo.adminName,
+            // let userToken = {
+                // username: userInfo.adminName,
                 // id: userInfo.id,
                 // role: userInfo.role
-            }
+            // }
             let secret = 'webAdmin' // 指定密钥
-            let token = jwt.sign(userToken, secret, { expiresIn: '1h' }) // 签发token
+            // let token = jwt.sign(userToken, secret, { expiresIn: '1h' }) // 签发token
             ctx.body = {
                 result: {
                     token: token,

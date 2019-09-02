@@ -7,12 +7,29 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const config = require('./config/config');
 const session = require('koa-session-minimal')
-
+var bodyParser = require('koa-bodyparser');
+var errorHandle = require('./middlewares/errorHandle')
+const koaJwt = require('koa-jwt')
+const axios = require('axios')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const post = require('./routes/post')
+
 // error handler
 onerror(app)
+
+//request set header
+// const TOKEN_KEY = 'login-token';
+// axios.defaults.headers.common['Authorization'] = localStorage.getItem(TOKEN_KEY);
+
+app.use(bodyParser())
+app.use(async (ctx, next) => {
+    // console.log(ctx)
+    let params =Object.assign({}, ctx.request.query, ctx.request.body);
+    ctx.request.header = {'authorization': "Bearer " + (params.token || '')}
+    console.log(ctx)
+    await next();
+})
 
 //secret and Time
 const jwtSecret = 'webAdmin'
@@ -56,9 +73,26 @@ app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(post.routes(), post.allowedMethods())
 
+//401handler 
+// app.use(errorHandle)
+// app.use((ctx, next) => {
+//   return next().catch((err) => {
+//     if (err.status === 401) {
+//       ctx.status = 401;
+//       ctx.body = {
+//         error: err.originalError ? err.originalError.message : err.message,
+//       };
+//       ctx.response.redirect('/login');
+//     } else {
+//       throw err;
+//     }
+//   });
+// })
+
+
 // error-handling
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx)
-});
+// app.on('error', (err, ctx) => {
+//   console.error('server error', err, ctx)
+// });
 
 module.exports = app

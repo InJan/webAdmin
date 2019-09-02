@@ -44,16 +44,17 @@ block content
                 });
                 break;
               case 3:
-                if (msg.resData.returnCode == '000000') {
-                  sessionStorage.setItem('login-token', msg.resData.result.token) // 用sessionStorage把token存下来
+                if (1) {
+                  localStorage.setItem('login-token', msg.token) // 用localStorage把token存下来
+                  console.log("已添加TOKEN"+msg.token)
                 } else {
-                  sessionStorage.setItem('login-token', null) // 将token清空
+                  localStorage.setItem('login-token', null) // 将token清空
                 }
                 layer.alert('登录成功',{icon: 1},()=>{
                 })
-                setTimeout(()=>{
-                  window.location.href = "/"
-                },500)
+                //- setTimeout(()=>{
+                //-   window.location.href = "/"
+                //- },500)
             }
           },
           error: function (msg) {
