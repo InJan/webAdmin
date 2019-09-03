@@ -25,8 +25,18 @@ let adminModel = require('../modules/controllers/dbCtrl_admin')
 //index
 router.get('/', async (ctx, next) => {
   if(!ctx.session.user){
-    await ctx.render('login', {
+    ctx.response.redirect('/login');
+  }else{
+    await ctx.render('index', {
+      title: 'Welcome to the webAdmin!',
+      session: ctx.session,
     })
+  }
+})
+router.get('/logout', async (ctx, next) => {
+  ctx.session.user = null
+  if(!ctx.session.user){
+    ctx.response.redirect('/login');
   }else{
     await ctx.render('index', {
       title: 'Welcome to the webAdmin!',

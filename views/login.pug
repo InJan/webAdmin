@@ -45,16 +45,16 @@ block content
                 break;
               case 3:
                 if (1) {
-                  localStorage.setItem('login-token', msg.token) // 用localStorage把token存下来
+                  sessionStorage.setItem('login-token', msg.token) // 用localStorage把token存下来
                   console.log("已添加TOKEN"+msg.token)
                 } else {
-                  localStorage.setItem('login-token', null) // 将token清空
+                  sessionStorage.setItem('login-token', null) // 将token清空
                 }
                 layer.alert('登录成功',{icon: 1},()=>{
                 })
-                //- setTimeout(()=>{
-                //-   window.location.href = "/"
-                //- },500)
+                setTimeout(()=>{
+                  window.location.href = "/"
+                },500)
             }
           },
           error: function (msg) {

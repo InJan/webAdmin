@@ -36,7 +36,7 @@ block content
       //-           | 在tab打开刷新
       ul.layui-nav.right(lay-filter='')
         li.layui-nav-item
-          //- a(href='javascript:;') #{session.user}
+          a(href='javascript:;') #{session.user}
           dl.layui-nav-child
             // 二级菜单
             //- dd
@@ -44,7 +44,7 @@ block content
             //- dd
             //-   a(onclick="xadmin.open('切换帐号','login')") 切换帐号
             dd
-              a(href='./login') 退出
+              a(href='./logout') 退出
         li.layui-nav-item.to-index
           a(href='http://longervisionrobot.com') 前台首页
     // 顶部结束

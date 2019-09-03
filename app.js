@@ -22,14 +22,21 @@ onerror(app)
 // const TOKEN_KEY = 'login-token';
 // axios.defaults.headers.common['Authorization'] = localStorage.getItem(TOKEN_KEY);
 
-app.use(bodyParser())
-app.use(async (ctx, next) => {
-    // console.log(ctx)
-    let params =Object.assign({}, ctx.request.query, ctx.request.body);
-    ctx.request.header = {'authorization': "Bearer " + (params.token || '')}
-    console.log(ctx)
-    await next();
-})
+// app.use(bodyParser())
+// app.use(async (ctx, next) => {
+//     // console.log(ctx)
+//     // console.log(ctx.request.header)
+//     // let params = 1
+//     let params = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNTY3NDc3MTI5LCJleHAiOjE1Njc0ODA3Mjl9.doZpXY6GxJxfi7T34DYGpHOxyVM2LdQCRDj2UOtREUA"
+//     // let params =Object.assign({}, ctx.request.query, ctx.request.body).token || '';
+//     ctx.request.header = {'authorization': "Bearer " + (params)}
+//     // console.log(params)
+//     await next();
+// })
+
+// app.use(koaJwt({secret:jwtSecret}).unless({
+//   path:[/^\/login/]
+// }))
 
 //secret and Time
 const jwtSecret = 'webAdmin'
@@ -64,12 +71,8 @@ app.use(async (ctx, next) => {
   // console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
-app.use(koaJwt({secret:jwtSecret}).unless({
-  path:[/^\/login/]
-}))
-
 // routes
-app.use(index.routes(), index.allowedMethods())
+app.use(index.routes(),index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(post.routes(), post.allowedMethods())
 
