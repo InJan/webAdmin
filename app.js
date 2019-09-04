@@ -18,22 +18,6 @@ const post = require('./routes/post')
 // error handler
 onerror(app)
 
-//request set header
-// const TOKEN_KEY = 'login-token';
-// axios.defaults.headers.common['Authorization'] = localStorage.getItem(TOKEN_KEY);
-
-// app.use(bodyParser())
-// app.use(async (ctx, next) => {
-//     // console.log(ctx)
-//     // console.log(ctx.request.header)
-//     // let params = 1
-//     let params = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNTY3NDc3MTI5LCJleHAiOjE1Njc0ODA3Mjl9.doZpXY6GxJxfi7T34DYGpHOxyVM2LdQCRDj2UOtREUA"
-//     // let params =Object.assign({}, ctx.request.query, ctx.request.body).token || '';
-//     ctx.request.header = {'authorization': "Bearer " + (params)}
-//     // console.log(params)
-//     await next();
-// })
-
 // app.use(koaJwt({secret:jwtSecret}).unless({
 //   path:[/^\/login/]
 // }))
@@ -63,13 +47,54 @@ app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
 
-// logger
+//request set header
+// const TOKEN_KEY = 'login-token';
+// axios.defaults.headers.common['Authorization'] = localStorage.getItem(TOKEN_KEY);
+let localFilter = (ctx) =>{
+  let url = ctx.originalUrl
+  if(allowpage.indexOf(url)>-1){
+    logger.info('kezhijiefangwen')
+  }else{
+    if(ctx.isAuthenticated()){
+      if(url==='/'){
+        ctx.redirect('/index')
+      }
+      console.log('success')      
+    }else{
+      console.log('fail')
+      console.log(ctx.request.url)
+      ctx.redirect('/login')
+    }
+  }
+}
+
+
+
+app.use(bodyParser())
 app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  // console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+    // console.log(ctx)
+    // console.log(ctx.request.header)
+    // let params = 1
+    // let params = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNTY3NDc3MTI5LCJleHAiOjE1Njc0ODA3Mjl9.doZpXY6GxJxfi7T34DYGpHOxyVM2LdQCRDj2UOtREUA"
+    // let params =Object.assign({}, ctx.request.query, ctx.request.body).token || '';
+    // ctx.request.header = {'authorization': "Bearer " + (params)}
+    // console.log(params)
+    // console.log(ctx.session.user)
+    // if(!ctx.session.user){
+    //   ctx.redirect('/login');
+    // }else{
+    //   ctx.response.redirect('/index');
+    // }
+    // localFilter(ctx)
+    await next();
 })
+// logger
+// app.use(async (ctx, next) => {
+//   const start = new Date()
+//   await next()
+//   const ms = new Date() - start
+//   // console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+// })
 
 // routes
 app.use(index.routes(),index.allowedMethods())

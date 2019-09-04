@@ -45,9 +45,15 @@ router.get('/logout', async (ctx, next) => {
   }
 })
 router.get('/index', async (ctx, next) => {
+  console.log(!ctx.session.user)
+  if(!ctx.session.user){
+    ctx.response.redirect('/login');
+  }else{
   await ctx.render('index', {
-    title: 'Welcome to the webAdmin!'
+    title: 'Welcome to the webAdmin!',
+    session: ctx.session,
   })
+}
 })
 router.get('/welcome', async (ctx, next) => {
   let docUsers = await dbCtrl_nodebb.findAllInUsers()
