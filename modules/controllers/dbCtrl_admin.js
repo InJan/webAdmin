@@ -9,7 +9,7 @@ class adminModel{
     static async createAdmin(data){
         var now = Date.now()
         return await admin.create({
-            adminName: data.adminName,
+            courseName: data.courseName,
             password: data.password,
             number: data.number,
             email: data.email,

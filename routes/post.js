@@ -22,6 +22,30 @@ router.post('/admin-add', async (ctx, next) =>{
         return await adminModel.createAdmin(admin)
     }
 })
+//course-add
+router.post('/course-add', async (ctx, next) =>{
+    let course = {
+        title : ctx.request.body.title,
+        pictureurl_s : ctx.request.body.pictureurl_s,
+        pictureurl_m : ctx.request.body.pictureurl_m,
+        availability : ctx.request.body.availability,
+        introduction : ctx.request.body.introduction,
+        detail : ctx.request.body.detail,
+        tags : ctx.request.body.tags,
+        features : ctx.request.body.features,     
+    }
+    if(await adminModel.getOneCourseByName(course.title)){
+        ctx.body = {
+            resData: 2
+        };
+        // console.log('has existed')
+    }else{
+        ctx.body = {
+            resData: 1
+        };
+        return await courseModel.createCourse(admin)
+    }
+})
 
 router.post('/admin-edit/:id', async (ctx, next) =>{
     let admin = {

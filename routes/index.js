@@ -2,6 +2,7 @@ const router = require('koa-router')()
 let dbCtrl_lv = require('../modules/controllers/dbCtrl_lv')
 let dbCtrl_nodebb = require('../modules/controllers/dbCtrl_nodebb')
 let adminModel = require('../modules/controllers/dbCtrl_admin')
+let courseModel = require('../modules/controllers/dbCtrl_course')
 
 //设置Bearer Token请求头
 // router.beforeEach((to, from, next) => {
@@ -131,6 +132,18 @@ router.get('/cate', async (ctx, next) => {
 })
 router.get('/city', async (ctx, next) => {
   await ctx.render('city', {
+  })
+})
+
+//course
+router.get('/course-list', async (ctx, next) => {
+  let docs = await courseModel.getCourseList()
+  await ctx.render('course-list', {
+    data: docs
+  })
+})
+router.get('/course-add', async (ctx, next) => {
+  await ctx.render('course-add', {
   })
 })
 
