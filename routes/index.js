@@ -1,6 +1,6 @@
 const router = require('koa-router')()
-let dbCtrl_lv = require('../modules/dbCtrl_lv')
-let dbCtrl_nodebb = require('../modules/dbCtrl_nodebb')
+let dbCtrl_lv = require('../modules/controllers/dbCtrl_lv')
+let dbCtrl_nodebb = require('../modules/controllers/dbCtrl_nodebb')
 let adminModel = require('../modules/controllers/dbCtrl_admin')
 
 //设置Bearer Token请求头

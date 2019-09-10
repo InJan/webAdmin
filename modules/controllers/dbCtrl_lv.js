@@ -1,4 +1,4 @@
-const mongodb = require("./dbConnect_Mongo_lv.js")
+const mongodb = require("../dbConnect_Mongo_lv.js")
 
 const findOneByAddressInSubsciber = (address) => {
     return new Promise((resolve, reject) => {

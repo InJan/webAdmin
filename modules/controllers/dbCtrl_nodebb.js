@@ -1,5 +1,5 @@
-const mongodb = require("./dbConnect_Mongo_nodebb.js")
-const util = require("./util.js")
+const mongodb = require("../dbConnect_Mongo_nodebb.js")
+const util = require("../util.js")
 
 const findOneByAddressInSubsciber = (address) => {
     return new Promise((resolve, reject) => {
