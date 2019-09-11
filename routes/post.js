@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const jwt = require('jsonwebtoken')
 let adminModel = require('../modules/controllers/dbCtrl_admin')
+let courseModel = require('../modules/controllers/dbCtrl_course')
 //admin-add
 router.post('/admin-add', async (ctx, next) =>{
     let admin = {
@@ -30,11 +31,12 @@ router.post('/course-add', async (ctx, next) =>{
         pictureurl_m : ctx.request.body.pictureurl_m,
         availability : ctx.request.body.availability,
         introduction : ctx.request.body.introduction,
+        classfication: ctx.request.body.classfication,
         detail : ctx.request.body.detail,
         tags : ctx.request.body.tags,
         features : ctx.request.body.features,     
     }
-    if(await adminModel.getOneCourseByName(course.title)){
+    if(await courseModel.getOneCourseByTitle(course.title)){
         ctx.body = {
             resData: 2
         };
@@ -43,8 +45,27 @@ router.post('/course-add', async (ctx, next) =>{
         ctx.body = {
             resData: 1
         };
-        return await courseModel.createCourse(admin)
+        return await courseModel.createCourse(course)
     }
+})
+router.post('/course-edit/:id', async (ctx, next) =>{
+    let course = {
+        title : ctx.request.body.title,
+        pictureurl_s : ctx.request.body.pictureurl_s,
+        pictureurl_m : ctx.request.body.pictureurl_m,
+        availability : ctx.request.body.availability,
+        introduction : ctx.request.body.introduction,
+        classfication: ctx.request.body.classfication,
+        detail : ctx.request.body.detail,
+        tags : ctx.request.body.tags,
+        features : ctx.request.body.features,     
+    }
+    let id = ctx.params.id
+    
+        ctx.body = {
+            resData: 1
+        };
+        return await courseModel.alterCourse(id,course)
 })
 
 router.post('/admin-edit/:id', async (ctx, next) =>{
@@ -56,17 +77,10 @@ router.post('/admin-edit/:id', async (ctx, next) =>{
         desciption : ctx.request.body.desciption,
     }
     let id = ctx.params.id
-    if(await adminModel.getOneAdminByName(admin.adminName)){
-        ctx.body = {
-            resData: 2
-        };
-        // console.log('hasn't existed')
-    }else{
-        ctx.body = {
-            resData: 1
-        };
-        return await adminModel.alterAdmin(id,admin)
-    }
+    ctx.body = {
+        resData: 1
+    };
+    return await adminModel.alterAdmin(id,admin)
 })
 
 router.post('/login', async (ctx, next) =>{

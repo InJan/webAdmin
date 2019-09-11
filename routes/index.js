@@ -146,7 +146,16 @@ router.get('/course-add', async (ctx, next) => {
   await ctx.render('course-add', {
   })
 })
-
+router.get('/course-edit/:id', async (ctx, next) => {
+  let id = ctx.params.id
+  let docs = await courseModel.getOneCourseByID(id)
+  // docs = JSON.stringify(docs)
+  // docs = docs[0].toObject();
+  // console.log(typeof(docs.id))
+  await ctx.render('course-edit', {
+    data: docs
+  })
+})
 //admin
 router.get('/admin-list', async (ctx, next) => {
   let docs = await adminModel.getAdminList()

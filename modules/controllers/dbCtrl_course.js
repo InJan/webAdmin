@@ -3,7 +3,7 @@ const sequelize = require("../dbConnect_Mysql").sequelize;
 const course = sequelize.import("../schemas/course");
 
 //判断表存在与建表
-// course.sync({force: false})
+course.sync({force: false})
 
 class courseModel{
     static async createCourse(data){
@@ -34,7 +34,7 @@ class courseModel{
     static async getOneCourseByTitle(title){
         return await course.findOne({
             where:{
-                courseTitile: title,
+                title: title,
             }
         })
     }
@@ -60,22 +60,22 @@ class courseModel{
         })
     }
     
-    static async validatePassword(courseName,password){
-        let courseObj = await course.findOne({
-            where:{
-                courseName: courseName,
-            }
-        })
-        if(courseObj){
-            if(password == courseObj.password){
-                return 3
-            }else{
-                return 2;
-            }
-        }else{
-            return 1;
-        }
-    }
+    // static async validatePassword(courseName,password){
+    //     let courseObj = await course.findOne({
+    //         where:{
+    //             courseName: courseName,
+    //         }
+    //     })
+    //     if(courseObj){
+    //         if(password == courseObj.password){
+    //             return 3
+    //         }else{
+    //             return 2;
+    //         }
+    //     }else{
+    //         return 1;
+    //     }
+    // }
 }
 
 module.exports = courseModel
