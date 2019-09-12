@@ -1,0 +1,126 @@
+extends layout
+
+block content
+
+    .education-main-content
+        .modal-dialog(role='document')
+        .education-login-box
+          h4 Send Email
+          |         
+          form.formEmail(method='post')
+            h6 Sender&apos;s nickname
+            |             
+            input(type='text', name='userName', value='Enter username*', onblur="if(this.value == '') { this.value ='Enter username*'; }", onfocus="if(this.value =='Enter username*') { this.value = ''; }")
+            |             
+            h6 Sender email address
+            |             
+            input(type='text', name='emailAddress', placeholder='Type your Email*')
+            |  
+            |             
+            h6 Recipient address list (multiple addresses separated by commas)
+            |             
+            input(type='text', name='DESTAddress', placeholder='e.g.514173569@qq.com,injan514173569@163.com,')
+            |  
+            |             
+            textarea(name='emailContent', cols='40', rows='20')
+            |             
+            .clearfix
+            |             
+            #sendEmail.button.button-3d.button-box.button-jumbo Send
+    style.
+        .education-main-content {
+            position: relative;
+            z-index: 5;
+            background-color: #ffffff;
+        }
+        .education-main-wrapper, #education-header, .education-userinfo, .education-main-content {
+            float: left;
+                width: 100%;
+        }
+        .education-main-content {
+            padding: 100px 0px 60px 0px;
+        }
+        .education-login-box {
+            width: 60%;
+            background-color: #ffffff;
+            padding: 31px 40px 33px 40px;
+            margin: 0 auto;
+        } 
+        div{
+            color: #333;
+        }
+        .education-login-box form, .education-login-box form input[type='text'], .education-login-box form input[type='password'] {
+            float: left;
+            width: 100%;
+        }
+        .education-login-box form input[type='text'],  {
+            background-color: transparent;
+            border: 1px solid #ececec;
+            padding: 6px 20px;
+            height: 40px;
+            font-size: 12px;
+            color: #999999;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px 0 0 10px;
+            border-radius: 4px;
+            border: 1px solid #d7dde4;
+            -webkit-appearance: none;
+            resize: none;
+            margin-bottom: 15px;
+        }
+        h4 {
+            color: #262626;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ececec;
+            margin-bottom: 30px;
+        }
+        body h1, body h2, body h3, body h4, body h5, body h6 {
+            color: #262626;
+            font-family: 'Ubuntu', sans-serif;
+            font-style: normal;
+            line-height: 1.5;
+            margin: 0 0 8px;
+        }
+        .education-login-box form input[type='text'], .education-login-box form input[type='password'] {
+            background-color: transparent;
+            border: 1px solid #ececec;
+            padding: 6px 20px;
+            height: 40px;
+            font-size: 12px;
+            color: #999999;
+            font-style: italic;
+            margin-bottom: 15px;
+            margin-right:10%;
+        }
+        .button {
+            color: #666;
+            background-color: #EEE;
+            border-color: #EEE;
+            font-weight: 300;
+            font-size: 16px;
+            font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            text-decoration: none;
+            text-align: center;
+            line-height: 40px;
+            height: 40px;
+            padding: 0 40px;
+            margin: 0;
+            display: inline-block;
+            appearance: none;
+            cursor: pointer;
+            border: none;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition-property: all;
+            transition-property: all;
+            -webkit-transition-duration: .3s;
+            transition-duration: .3s;
+        }

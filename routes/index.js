@@ -249,7 +249,10 @@ router.get('/log', async (ctx, next) => {
   })
 })
 
-
+router.get('/sendEmail', async (ctx, next) => {
+  await ctx.render('sendEmail', {
+  })
+})
 
 
 // router.get('/string', async (ctx, next) => {
