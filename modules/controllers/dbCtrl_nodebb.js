@@ -1,7 +1,7 @@
 const mongodb = require("../dbConnect_Mongo_nodebb.js")
 const util = require("../util.js")
 
-const findOneByAddressInSubsciber = (address) => {
+const findOneByAddressInSubsrciber = (address) => {
     return new Promise((resolve, reject) => {
         mongodb.users.findOne({ address: address }, (err, doc) => {
         if(err){
@@ -37,5 +37,5 @@ const findAllInUsers= () => {
 
 module.exports = {
     findAllInUsers,
-    findOneByAddressInSubsciber,
+    findOneByAddressInSubsrciber,
 };

@@ -43,7 +43,7 @@ class adminModel{
         return await f
     }
 
-    static async rmAmdin(id){
+    static async rmAdmin(id){
         return await id
     }
 

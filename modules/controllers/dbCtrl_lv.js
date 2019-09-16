@@ -1,6 +1,6 @@
 const mongodb = require("../dbConnect_Mongo_lv.js")
 
-const findOneByAddressInSubsciber = (address) => {
+const findOneByAddressInSubsrciber = (address) => {
     return new Promise((resolve, reject) => {
       mongodb.subscriber.findOne({ address: address }, (err, doc) => {
         if(err){
@@ -24,5 +24,5 @@ const findAllInSubscriber = () => {
 
 module.exports = {
     findAllInSubscriber,
-    findOneByAddressInSubsciber,
+    findOneByAddressInSubscriber,
 };
